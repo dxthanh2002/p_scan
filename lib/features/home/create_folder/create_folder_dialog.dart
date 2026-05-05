@@ -42,6 +42,12 @@ class _CreateFolderDialogState extends State<CreateFolderDialog> {
             TextField(
               controller: _controller,
               autofocus: true,
+              onSubmitted: (value) {
+                final folderName = value.trim();
+                if (folderName.isNotEmpty) {
+                  Navigator.pop(context, folderName);
+                }
+              },
               decoration: InputDecoration(
                 hintText: 'Folder Name',
                 hintStyle: const TextStyle(

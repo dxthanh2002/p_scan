@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../camera_scan/camera_scan_screen.dart';
 import 'home_viewmodel.dart';
 import 'create_folder/create_folder_dialog.dart';
 import 'widgets/folder_actions_bottom_sheet.dart';
@@ -145,7 +146,12 @@ class _HomeScreenState extends State<HomeScreen> {
         width: 64,
         height: 64,
         child: FloatingActionButton(
-          onPressed: _viewModel.onCameraTap,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CameraScanScreen()),
+            );
+          },
           backgroundColor: const Color(0xFF2563EB), // blue-600
           elevation: 12,
           shape: RoundedRectangleBorder(
@@ -159,7 +165,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildFolderCard(FolderModel folder) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -180,17 +187,17 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Row(
         children: [
           Container(
-            width: 64,
-            height: 64,
+            width: 48,
+            height: 48,
             decoration: BoxDecoration(
               color: const Color(0xFFF8FAFC), // slate-50
               borderRadius: BorderRadius.circular(8),
             ),
             child: const Center(
-              child: Icon(Icons.folder, color: Color(0xFF2563EB), size: 36),
+              child: Icon(Icons.folder, color: Color(0xFF2563EB), size: 28),
             ),
           ),
-          const SizedBox(width: 16),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -198,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   folder.name,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   ),
@@ -207,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   '${folder.fileCount} FILES',
                   style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: 11,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.6,
                     color: Color(0xFF2563EB),
@@ -217,7 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   folder.date,
                   style: const TextStyle(
-                    fontSize: 14,
+                    fontSize: 12,
                     color: Color(0xFF94A3B8), // slate-400
                   ),
                 ),
