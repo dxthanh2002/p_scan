@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'routes.dart';
 import '../features/home/home_screen.dart';
+import '../features/setting/setting_screen.dart';
 
 class AppRouter {
   AppRouter._();
@@ -10,6 +11,11 @@ class AppRouter {
       case Routes.home:
         return MaterialPageRoute(
           builder: (_) => const HomeScreen(),
+          settings: settings,
+        );
+      case Routes.setting:
+        return MaterialPageRoute(
+          builder: (_) => const SettingScreen(),
           settings: settings,
         );
       default:
